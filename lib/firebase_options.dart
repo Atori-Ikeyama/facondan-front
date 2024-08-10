@@ -60,4 +60,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'ne-chu-show.appspot.com',
     iosBundleId: 'com.example.neChuShow',
   );
+
 }
