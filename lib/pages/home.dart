@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ne_chu_show/features/ne_chu_list/ne_chu_list.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -9,18 +10,28 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: const Text('NE CHU SHOW'),
       ),
-      body: const Center(
+      body: const Padding(
+        padding: EdgeInsets.all(0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Your score is',
-              style: TextStyle(fontSize: 20),
+              '今日の熱中賞🏆',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
             ),
+            NeChuList(),
+            SizedBox(height: 20),
             Text(
-              '40',
-              style: TextStyle(fontSize: 40),
+              '過去の自分の熱中',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
             ),
+            NeChuList(),
           ],
         ),
       ),
@@ -28,7 +39,12 @@ class Home extends StatelessWidget {
         onPressed: () {
           Navigator.of(context).pushNamed('/measure');
         },
-        icon: const Icon(Icons.add),
+        icon: const Icon(
+          Icons.add_circle_outline,
+          size: 50,
+          weight: 10,
+          color: Color(0xFFFF1212),
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
