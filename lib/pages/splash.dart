@@ -17,7 +17,7 @@ class _SplashState extends State<Splash> {
       Navigator.of(context).pushNamed('/home');
     }
     return Consumer(builder: (context, ref, _) {
-      print(ref.watch(userProviderProvider).email);
+      debugPrint(ref.watch(userProviderProvider).email);
       if (ref.watch(userProviderProvider).email.isNotEmpty) {
         WidgetsBinding.instance.addPostFrameCallback((timeStamp) => Navigator.of(context).pushNamed('/home'));
       } else {

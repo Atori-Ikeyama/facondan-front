@@ -1,26 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'videos_view_model.dart';
+part of 'ne_chu_repository.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$videosViewModelHash() => r'b8ce7974d023bc2c3eaa4ca79dea441de42f207b';
+String _$neChuRepositoryHash() => r'62edf21d376919ec0c0626f6163866b7da9eb104';
 
-/// See also [VideosViewModel].
-@ProviderFor(VideosViewModel)
-final videosViewModelProvider =
-    AutoDisposeAsyncNotifierProvider<VideosViewModel, List<Video>>.internal(
-  VideosViewModel.new,
-  name: r'videosViewModelProvider',
+/// See also [NeChuRepository].
+@ProviderFor(NeChuRepository)
+final neChuRepositoryProvider =
+    AutoDisposeNotifierProvider<NeChuRepository, CollectionReference>.internal(
+  NeChuRepository.new,
+  name: r'neChuRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$videosViewModelHash,
+      : _$neChuRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$VideosViewModel = AutoDisposeAsyncNotifier<List<Video>>;
+typedef _$NeChuRepository = AutoDisposeNotifier<CollectionReference>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

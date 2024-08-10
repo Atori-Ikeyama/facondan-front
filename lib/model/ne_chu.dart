@@ -1,12 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'video.freezed.dart';
+part 'ne_chu.freezed.dart';
 
 @freezed
-class Video with _$Video {
-  factory Video(
+class NeChu with _$NeChu {
+  factory NeChu(
       {required String category,
       required DateTime date,
       required String email,
@@ -15,16 +14,13 @@ class Video with _$Video {
       Uri? scoredStorageUrl,
       int? score,
       String? singleComments,
-      int? templature}) = _Video;
+      int? templature}) = _NeChu;
 
-  factory Video.fromFirestore(
+  factory NeChu.fromFirestore(
     DocumentSnapshot<Object?> snapshot,
   ) {
     final data = snapshot.data() as Map<String, dynamic>;
-    debugPrint(data.toString());
-    debugPrint(
-        "category: ${data['category']}, date: ${data['date']}, email: ${data['email']}, kiss_required: ${data['kiss_required']}, raw_storage_url: ${data['raw_storage_url']}");
-    return Video(
+    return NeChu(
       category: data['category'] as String,
       date: (data['date'] as Timestamp).toDate(),
       email: data['email'] as String,
