@@ -90,9 +90,7 @@ class Measure extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: TextButton(
-        style: TextButton.styleFrom(
-            shape:
-                const RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
+        style: TextButton.styleFrom(shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
         onPressed: () async {
           XFile? file = await MoviePicker.PickMovie();
           if (file != null) {
@@ -103,9 +101,7 @@ class Measure extends StatelessWidget {
             ? Stack(children: [
                 DottedBorder(
                   child: Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            color: Colors.black, style: BorderStyle.none)),
+                    decoration: BoxDecoration(border: Border.all(color: Colors.black, style: BorderStyle.none)),
                     height: containerSize,
                     width: containerSize,
                   ),
@@ -123,8 +119,7 @@ class Measure extends StatelessWidget {
                         ),
                         Text(
                           "アップロードする",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                         )
                       ],
                     ),
@@ -132,26 +127,13 @@ class Measure extends StatelessWidget {
                 ),
               ])
             : Consumer(builder: (context, ref2, _) {
-                print(ref2
-                    .watch(addNechuViewModelProvider)
-                    .videoController!
-                    .value
-                    .aspectRatio);
-                print(ref2
-                    .watch(addNechuViewModelProvider)
-                    .videoController!
-                    .value
-                    .size);
+                print(ref2.watch(addNechuViewModelProvider).videoController!.value.aspectRatio);
+                print(ref2.watch(addNechuViewModelProvider).videoController!.value.size);
                 return SizedBox(
                   height: 230,
                   child: AspectRatio(
-                    aspectRatio: ref2
-                        .watch(addNechuViewModelProvider)
-                        .videoController!
-                        .value
-                        .aspectRatio,
-                    child: VideoPlayer(
-                        ref2.watch(addNechuViewModelProvider).videoController!),
+                    aspectRatio: ref2.watch(addNechuViewModelProvider).videoController!.value.aspectRatio,
+                    child: VideoPlayer(ref2.watch(addNechuViewModelProvider).videoController!),
                   ),
                 );
               }),
