@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ne_chu_show/features/add_nechu/add_nechu_state.dart';
@@ -24,6 +25,7 @@ class AddNechuViewModel extends _$AddNechuViewModel {
   }
 
   void changeCategory(String category) {
+    debugPrint("category: $category");
     state = state.copyWith(category: category);
   }
 

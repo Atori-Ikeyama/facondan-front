@@ -81,38 +81,53 @@ class Measure extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            TextFormField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'タイトル',
-                hintText: 'タイトルを入力してください',
-              ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'タイトルを入力してください';
-                }
-                return null;
-              },
-            ),
+            Consumer(builder: (context, ref, _) {
+              return TextFormField(
+                onChanged: (value) {
+                  ref.read(addNechuViewModelProvider.notifier).changeTitle(value);
+                },
+                controller: TextEditingController(text: ref.watch(addNechuViewModelProvider).title),
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'タイトル',
+                  hintText: 'タイトルを入力してください',
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'タイトルを入力してください';
+                  }
+                  return null;
+                },
+              );
+            }),
             const SizedBox(
               height: 20,
             ),
-            DropdownButtonFormField(
-              items: items.map((String value) {
-                return DropdownMenuItem(
-                  value: value,
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Text(value),
-                  ),
-                );
-              }).toList(),
-              onChanged: (value) => {},
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'ジャンル',
-              ),
-            )
+            Consumer(builder: (context, ref, _) {
+              final catego = ref.watch(addNechuViewModelProvider).category;
+              return DropdownButtonFormField(
+                validator: (value) => value == null || value.isEmpty ? 'ジャンルを選択してください' : null,
+                value: (catego.isNotEmpty) ? catego : null,
+                hint: Text("ヒント"),
+                items: items.map((String value) {
+                  return DropdownMenuItem(
+                    value: value,
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Text(value),
+                    ),
+                    // onTap: () => ref.read(addNechuViewModelProvider.notifier).changeCategory(value),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  ref.read(addNechuViewModelProvider.notifier).changeCategory(value ?? "");
+                },
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'ジャンル',
+                ),
+              );
+            })
           ],
         ),
       ),
