@@ -66,7 +66,7 @@ class _$PrePostNechuCopyWithImpl<$Res, $Val extends PrePostNechu>
     Object? date = null,
     Object? email = null,
     Object? filePath = null,
-    Object? xfile_video = null,
+    Object? xfile_video = freezed,
     Object? lat = null,
     Object? lng = null,
   }) {
@@ -87,7 +87,7 @@ class _$PrePostNechuCopyWithImpl<$Res, $Val extends PrePostNechu>
           ? _value.filePath
           : filePath // ignore: cast_nullable_to_non_nullable
               as String,
-      xfile_video: null == xfile_video
+      xfile_video: freezed == xfile_video
           ? _value.xfile_video
           : xfile_video // ignore: cast_nullable_to_non_nullable
               as XFile,
@@ -138,7 +138,7 @@ class __$$PrePostNechuImplCopyWithImpl<$Res>
     Object? date = null,
     Object? email = null,
     Object? filePath = null,
-    Object? xfile_video = null,
+    Object? xfile_video = freezed,
     Object? lat = null,
     Object? lng = null,
   }) {
@@ -159,7 +159,7 @@ class __$$PrePostNechuImplCopyWithImpl<$Res>
           ? _value.filePath
           : filePath // ignore: cast_nullable_to_non_nullable
               as String,
-      xfile_video: null == xfile_video
+      xfile_video: freezed == xfile_video
           ? _value.xfile_video
           : xfile_video // ignore: cast_nullable_to_non_nullable
               as XFile,
@@ -218,15 +218,15 @@ class _$PrePostNechuImpl implements _PrePostNechu {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.filePath, filePath) ||
                 other.filePath == filePath) &&
-            (identical(other.xfile_video, xfile_video) ||
-                other.xfile_video == xfile_video) &&
+            const DeepCollectionEquality()
+                .equals(other.xfile_video, xfile_video) &&
             (identical(other.lat, lat) || other.lat == lat) &&
             (identical(other.lng, lng) || other.lng == lng));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, category, date, email, filePath, xfile_video, lat, lng);
+  int get hashCode => Object.hash(runtimeType, category, date, email, filePath,
+      const DeepCollectionEquality().hash(xfile_video), lat, lng);
 
   /// Create a copy of PrePostNechu
   /// with the given fields replaced by the non-null parameter values.

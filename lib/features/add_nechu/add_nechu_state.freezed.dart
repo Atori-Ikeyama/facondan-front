@@ -187,7 +187,7 @@ class _$AddNechuStateImpl implements _AddNechuState {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.category, category) ||
                 other.category == category) &&
-            (identical(other.video, video) || other.video == video) &&
+            const DeepCollectionEquality().equals(other.video, video) &&
             (identical(other.videoController, videoController) ||
                 other.videoController == videoController) &&
             (identical(other.isUploading, isUploading) ||
@@ -195,8 +195,8 @@ class _$AddNechuStateImpl implements _AddNechuState {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, title, category, video, videoController, isUploading);
+  int get hashCode => Object.hash(runtimeType, title, category,
+      const DeepCollectionEquality().hash(video), videoController, isUploading);
 
   /// Create a copy of AddNechuState
   /// with the given fields replaced by the non-null parameter values.
