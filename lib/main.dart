@@ -31,7 +31,16 @@ class MyApp extends StatelessWidget {
           '/home': (BuildContext context) => const Home(),
           '/signing': (BuildContext context) => const Signing(),
           '/measure': (BuildContext context) => const Measure(),
-          '/score': (BuildContext context) => const Score(),
+        },
+        onGenerateRoute: (settings) {
+          if (settings.name == '/score') {
+            return MaterialPageRoute(
+              builder: (context) => Score(
+                docId: settings.arguments as String,
+              ),
+            );
+          }
+          return null;
         },
         home: const Splash());
   }
