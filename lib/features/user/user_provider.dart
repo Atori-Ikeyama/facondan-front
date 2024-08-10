@@ -7,7 +7,7 @@ part 'user_provider.g.dart';
 class UserProvider extends _$UserProvider {
   @override
   User build() {
-    return User(email: '');
+    return User(email: 'email@email.com');
   }
 
   void change(User user) {

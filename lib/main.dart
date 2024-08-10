@@ -6,6 +6,7 @@ import 'package:ne_chu_show/pages/home.dart';
 import 'package:ne_chu_show/pages/measure.dart';
 import 'package:ne_chu_show/pages/score.dart';
 import 'package:ne_chu_show/pages/signing.dart';
+import 'package:ne_chu_show/pages/splash.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
           '/measure': (BuildContext context) => const Measure(),
           '/score': (BuildContext context) => const Score(),
         },
-        home: const Signing());
+        home: const Splash());
   }
 }
 
