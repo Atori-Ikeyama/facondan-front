@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ne_chu_show/features/ne_chu_list/ne_chu_list.dart';
+import 'package:ne_chu_show/features/user/user_provider.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});

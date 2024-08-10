@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:ne_chu_show/model/video.dart';
 import 'package:ne_chu_show/repository/videos_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

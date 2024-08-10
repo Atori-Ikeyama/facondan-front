@@ -6,20 +6,22 @@ import 'package:ne_chu_show/model/video.dart';
 import 'package:ne_chu_show/repository/videos_repository.dart';
 
 class Videos extends ConsumerWidget {
+  const Videos({super.key});
+
   @override
   Widget build(context, ref) {
     VideosRepository videosRepository = VideosRepository();
     return Column(
       children: [
         ref.watch(videosViewModelProvider).when(
-            data: (data) => Text("data"),
+            data: (data) => const Text("data"),
             error: (_, __) {
               print(__.toString());
-              return Text("error");
+              return const Text("error");
             },
-            loading: () => Text("loading")),
+            loading: () => const Text("loading")),
         TextButton(
-          child: Text("aiueo"),
+          child: const Text("aiueo"),
           onPressed: () async {
             final test = <String, dynamic>{
               "first": "ada",
@@ -31,7 +33,7 @@ class Videos extends ConsumerWidget {
           },
         ),
         TextButton(
-          child: Text("add video"),
+          child: const Text("add video"),
           onPressed: () => videosRepository.addVideo(Video(
               category: "test",
               date: DateTime.now(),
