@@ -66,10 +66,10 @@ class Measure extends StatelessWidget {
 
   Widget uploadInputForm() {
     const items = <String>[
-      "アニメ",
-      "映画",
-      "ドラマ",
-      "音楽",
+      "日常",
+      "スポーツ",
+      "ゲーム",
+      "恋愛",
     ];
     final formKey = GlobalKey<FormState>();
     return Form(
@@ -105,26 +105,25 @@ class Measure extends StatelessWidget {
             ),
             Consumer(builder: (context, ref, _) {
               final catego = ref.watch(addNechuViewModelProvider).category;
-              return DropdownButtonFormField(
-                validator: (value) => value == null || value.isEmpty ? 'ジャンルを選択してください' : null,
-                value: (catego.isNotEmpty) ? catego : null,
-                hint: Text("ヒント"),
-                items: items.map((String value) {
-                  return DropdownMenuItem(
-                    value: value,
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Text(value),
-                    ),
-                    // onTap: () => ref.read(addNechuViewModelProvider.notifier).changeCategory(value),
-                  );
-                }).toList(),
-                onChanged: (value) {
-                  ref.read(addNechuViewModelProvider.notifier).changeCategory(value ?? "");
-                },
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'ジャンル',
+              return Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black),
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: DropdownButton(
+                  value: (catego.isNotEmpty) ? catego : null,
+                  hint: Text("ヒント"),
+                  items: items.map((String value) {
+                    return DropdownMenuItem(
+                      value: value,
+                      child: Text(" " + value),
+                      // onTap: () => ref.read(addNechuViewModelProvider.notifier).changeCategory(value),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    ref.read(addNechuViewModelProvider.notifier).changeCategory(value ?? "");
+                  },
                 ),
               );
             })

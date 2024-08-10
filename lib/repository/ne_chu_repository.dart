@@ -19,7 +19,7 @@ class NeChuRepository extends _$NeChuRepository {
     return FirebaseFirestore.instance.collection("ne_chus");
   }
 
-  final CollectionReference _videosCollectionRef = FirebaseFirestore.instance.collection("test");
+  final CollectionReference _videosCollectionRef = FirebaseFirestore.instance.collection("ne_chus");
 
   Future<List<Video>> getAllVideos() async {
     List<Video> videos = [];
