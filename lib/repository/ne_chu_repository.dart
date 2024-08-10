@@ -1,9 +1,16 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
+import 'package:ne_chu_show/model/ne_chu.dart';
+import 'package:ne_chu_show/model/pre_post_nechu.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:ne_chu_show/model/ne_chu.dart';
-
 part 'ne_chu_repository.g.dart';
+
+const String firebaseStoragePathPrefix = "https://firebasestorage.googleapis.com/v0/b/ne-chu-show.appspot.com/o/raw%2F";
+const String firebaseStoragePathSuffix = "?alt=media&token=43adcac3-258d-496e-aeb1-81134acc5137";
 
 @riverpod
 class NeChuRepository extends _$NeChuRepository {
@@ -46,17 +53,42 @@ class NeChuRepository extends _$NeChuRepository {
     return neChus;
   }
 
-  Future<void> addNeChu(NeChu neChu) async {
-    await state.add({
-      "category": neChu.category,
-      "date": neChu.date,
-      "email": neChu.email,
-      "kiss_required": neChu.kissRequired,
-      "raw_storage_url": neChu.rawStorageUrl.toString(),
-      "scored_storage_url": neChu.scoredStorageUrl?.toString(),
-      "score": neChu.score,
-      "single_comments": neChu.title,
-      "templature": neChu.templature,
-    });
+  Future<void> addVideo(PrePostNechu video) async {
+    try {
+      await ref.read(neChuRepositoryProvider.notifier).addVideo(PrePostNechu(
+          category: video.category,
+          date: video.date,
+          email: video.email,
+          filePath: video.filePath,
+          xfile_video: video.xfile_video,
+          lat: video.lat,
+          lng: video.lng));
+    } on Exception {
+      throw Exception("ポストに失敗");
+    }
+
+    try {
+      await ref.read(neChuStorageRepositoryProvider.notifier).uploadVideo(video);
+    } on Exception {
+      throw Exception("ポストに失敗");
+    }
+  }
+}
+
+@riverpod
+class NeChuStorageRepository extends _$NeChuStorageRepository {
+  @override
+  FirebaseStorage build() {
+    return FirebaseStorage.instance;
+  }
+
+  final FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
+
+  Future<void> uploadVideo(PrePostNechu prePostNechu) async {
+    try {
+      await _firebaseStorage.ref("raw").child(prePostNechu.filePath).putFile(File(prePostNechu.xfile_video.path));
+    } on Exception {
+      throw Exception("ポストに失敗");
+    }
   }
 }
