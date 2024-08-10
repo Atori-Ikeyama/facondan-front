@@ -27,6 +27,7 @@ dependencies:
   riverpod_generator: ^2.4.2
   google_sign_in: ^6.2.1
   flutter_svg: ^2.0.10+1
+  video_player: ^2.9.1
 
 dev_dependencies:
   flutter_test:
@@ -34,8 +35,12 @@ dev_dependencies:
 
   flutter_lints: ^4.0.0
 
+  # build_runner の実行コマンド
+  # fvm flutter packages pub run build_runner build --delete-conflicting-outputs
+  # fvm flutter packages pub run build_runner watch --delete-conflicting-outputs
+
 flutter:
   uses-material-design: true
   assets:
     - assets/branding_guideline_sample_nt_rd_lg.svg
-  
+    - assets/logo_nechushow.png

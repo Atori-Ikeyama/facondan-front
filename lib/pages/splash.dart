@@ -17,11 +17,21 @@ class _SplashState extends State<Splash> {
       Navigator.of(context).pushNamed('/home');
     }
     return Consumer(builder: (context, ref, _) {
-      print(ref.watch(userProviderProvider).email);
+      debugPrint(ref.watch(userProviderProvider).email);
       if (ref.watch(userProviderProvider).email.isNotEmpty) {
-        WidgetsBinding.instance.addPostFrameCallback((timeStamp) => Navigator.of(context).pushNamed('/home'));
+        WidgetsBinding.instance.addPostFrameCallback(
+          (timeStamp) => Navigator.of(context).pushNamedAndRemoveUntil(
+            '/home',
+            (Route<dynamic> route) => false,
+          ),
+        );
       } else {
-        WidgetsBinding.instance.addPostFrameCallback((timestamp) => Navigator.of(context).pushNamed('/signing'));
+        WidgetsBinding.instance.addPostFrameCallback(
+          (timestamp) => Navigator.of(context).pushNamedAndRemoveUntil(
+            '/signing',
+            (Route<dynamic> route) => false,
+          ),
+        );
       }
       return const CircularProgressIndicator();
     });

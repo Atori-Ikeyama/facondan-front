@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'video.dart';
+part of 'ne_chu.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,27 +15,27 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$Video {
+mixin _$NeChu {
   String get category => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   bool get kissRequired => throw _privateConstructorUsedError;
   Uri get rawStorageUrl => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
   Uri? get scoredStorageUrl => throw _privateConstructorUsedError;
   int? get score => throw _privateConstructorUsedError;
-  String? get singleComments => throw _privateConstructorUsedError;
   int? get templature => throw _privateConstructorUsedError;
 
-  /// Create a copy of Video
+  /// Create a copy of NeChu
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $VideoCopyWith<Video> get copyWith => throw _privateConstructorUsedError;
+  $NeChuCopyWith<NeChu> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $VideoCopyWith<$Res> {
-  factory $VideoCopyWith(Video value, $Res Function(Video) then) =
-      _$VideoCopyWithImpl<$Res, Video>;
+abstract class $NeChuCopyWith<$Res> {
+  factory $NeChuCopyWith(NeChu value, $Res Function(NeChu) then) =
+      _$NeChuCopyWithImpl<$Res, NeChu>;
   @useResult
   $Res call(
       {String category,
@@ -43,23 +43,23 @@ abstract class $VideoCopyWith<$Res> {
       String email,
       bool kissRequired,
       Uri rawStorageUrl,
+      String title,
       Uri? scoredStorageUrl,
       int? score,
-      String? singleComments,
       int? templature});
 }
 
 /// @nodoc
-class _$VideoCopyWithImpl<$Res, $Val extends Video>
-    implements $VideoCopyWith<$Res> {
-  _$VideoCopyWithImpl(this._value, this._then);
+class _$NeChuCopyWithImpl<$Res, $Val extends NeChu>
+    implements $NeChuCopyWith<$Res> {
+  _$NeChuCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Video
+  /// Create a copy of NeChu
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -69,9 +69,9 @@ class _$VideoCopyWithImpl<$Res, $Val extends Video>
     Object? email = null,
     Object? kissRequired = null,
     Object? rawStorageUrl = null,
+    Object? title = null,
     Object? scoredStorageUrl = freezed,
     Object? score = freezed,
-    Object? singleComments = freezed,
     Object? templature = freezed,
   }) {
     return _then(_value.copyWith(
@@ -95,6 +95,10 @@ class _$VideoCopyWithImpl<$Res, $Val extends Video>
           ? _value.rawStorageUrl
           : rawStorageUrl // ignore: cast_nullable_to_non_nullable
               as Uri,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
       scoredStorageUrl: freezed == scoredStorageUrl
           ? _value.scoredStorageUrl
           : scoredStorageUrl // ignore: cast_nullable_to_non_nullable
@@ -103,10 +107,6 @@ class _$VideoCopyWithImpl<$Res, $Val extends Video>
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
               as int?,
-      singleComments: freezed == singleComments
-          ? _value.singleComments
-          : singleComments // ignore: cast_nullable_to_non_nullable
-              as String?,
       templature: freezed == templature
           ? _value.templature
           : templature // ignore: cast_nullable_to_non_nullable
@@ -116,10 +116,10 @@ class _$VideoCopyWithImpl<$Res, $Val extends Video>
 }
 
 /// @nodoc
-abstract class _$$VideoImplCopyWith<$Res> implements $VideoCopyWith<$Res> {
-  factory _$$VideoImplCopyWith(
-          _$VideoImpl value, $Res Function(_$VideoImpl) then) =
-      __$$VideoImplCopyWithImpl<$Res>;
+abstract class _$$NeChuImplCopyWith<$Res> implements $NeChuCopyWith<$Res> {
+  factory _$$NeChuImplCopyWith(
+          _$NeChuImpl value, $Res Function(_$NeChuImpl) then) =
+      __$$NeChuImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -128,21 +128,21 @@ abstract class _$$VideoImplCopyWith<$Res> implements $VideoCopyWith<$Res> {
       String email,
       bool kissRequired,
       Uri rawStorageUrl,
+      String title,
       Uri? scoredStorageUrl,
       int? score,
-      String? singleComments,
       int? templature});
 }
 
 /// @nodoc
-class __$$VideoImplCopyWithImpl<$Res>
-    extends _$VideoCopyWithImpl<$Res, _$VideoImpl>
-    implements _$$VideoImplCopyWith<$Res> {
-  __$$VideoImplCopyWithImpl(
-      _$VideoImpl _value, $Res Function(_$VideoImpl) _then)
+class __$$NeChuImplCopyWithImpl<$Res>
+    extends _$NeChuCopyWithImpl<$Res, _$NeChuImpl>
+    implements _$$NeChuImplCopyWith<$Res> {
+  __$$NeChuImplCopyWithImpl(
+      _$NeChuImpl _value, $Res Function(_$NeChuImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Video
+  /// Create a copy of NeChu
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -152,12 +152,12 @@ class __$$VideoImplCopyWithImpl<$Res>
     Object? email = null,
     Object? kissRequired = null,
     Object? rawStorageUrl = null,
+    Object? title = null,
     Object? scoredStorageUrl = freezed,
     Object? score = freezed,
-    Object? singleComments = freezed,
     Object? templature = freezed,
   }) {
-    return _then(_$VideoImpl(
+    return _then(_$NeChuImpl(
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -178,6 +178,10 @@ class __$$VideoImplCopyWithImpl<$Res>
           ? _value.rawStorageUrl
           : rawStorageUrl // ignore: cast_nullable_to_non_nullable
               as Uri,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
       scoredStorageUrl: freezed == scoredStorageUrl
           ? _value.scoredStorageUrl
           : scoredStorageUrl // ignore: cast_nullable_to_non_nullable
@@ -186,10 +190,6 @@ class __$$VideoImplCopyWithImpl<$Res>
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
               as int?,
-      singleComments: freezed == singleComments
-          ? _value.singleComments
-          : singleComments // ignore: cast_nullable_to_non_nullable
-              as String?,
       templature: freezed == templature
           ? _value.templature
           : templature // ignore: cast_nullable_to_non_nullable
@@ -200,16 +200,16 @@ class __$$VideoImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$VideoImpl implements _Video {
-  _$VideoImpl(
+class _$NeChuImpl implements _NeChu {
+  _$NeChuImpl(
       {required this.category,
       required this.date,
       required this.email,
       required this.kissRequired,
       required this.rawStorageUrl,
+      required this.title,
       this.scoredStorageUrl,
       this.score,
-      this.singleComments,
       this.templature});
 
   @override
@@ -223,24 +223,24 @@ class _$VideoImpl implements _Video {
   @override
   final Uri rawStorageUrl;
   @override
+  final String title;
+  @override
   final Uri? scoredStorageUrl;
   @override
   final int? score;
-  @override
-  final String? singleComments;
   @override
   final int? templature;
 
   @override
   String toString() {
-    return 'Video(category: $category, date: $date, email: $email, kissRequired: $kissRequired, rawStorageUrl: $rawStorageUrl, scoredStorageUrl: $scoredStorageUrl, score: $score, singleComments: $singleComments, templature: $templature)';
+    return 'NeChu(category: $category, date: $date, email: $email, kissRequired: $kissRequired, rawStorageUrl: $rawStorageUrl, title: $title, scoredStorageUrl: $scoredStorageUrl, score: $score, templature: $templature)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$VideoImpl &&
+            other is _$NeChuImpl &&
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.date, date) || other.date == date) &&
@@ -249,48 +249,38 @@ class _$VideoImpl implements _Video {
                 other.kissRequired == kissRequired) &&
             (identical(other.rawStorageUrl, rawStorageUrl) ||
                 other.rawStorageUrl == rawStorageUrl) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.scoredStorageUrl, scoredStorageUrl) ||
                 other.scoredStorageUrl == scoredStorageUrl) &&
             (identical(other.score, score) || other.score == score) &&
-            (identical(other.singleComments, singleComments) ||
-                other.singleComments == singleComments) &&
             (identical(other.templature, templature) ||
                 other.templature == templature));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      category,
-      date,
-      email,
-      kissRequired,
-      rawStorageUrl,
-      scoredStorageUrl,
-      score,
-      singleComments,
-      templature);
+  int get hashCode => Object.hash(runtimeType, category, date, email,
+      kissRequired, rawStorageUrl, title, scoredStorageUrl, score, templature);
 
-  /// Create a copy of Video
+  /// Create a copy of NeChu
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$VideoImplCopyWith<_$VideoImpl> get copyWith =>
-      __$$VideoImplCopyWithImpl<_$VideoImpl>(this, _$identity);
+  _$$NeChuImplCopyWith<_$NeChuImpl> get copyWith =>
+      __$$NeChuImplCopyWithImpl<_$NeChuImpl>(this, _$identity);
 }
 
-abstract class _Video implements Video {
-  factory _Video(
+abstract class _NeChu implements NeChu {
+  factory _NeChu(
       {required final String category,
       required final DateTime date,
       required final String email,
       required final bool kissRequired,
       required final Uri rawStorageUrl,
+      required final String title,
       final Uri? scoredStorageUrl,
       final int? score,
-      final String? singleComments,
-      final int? templature}) = _$VideoImpl;
+      final int? templature}) = _$NeChuImpl;
 
   @override
   String get category;
@@ -303,18 +293,18 @@ abstract class _Video implements Video {
   @override
   Uri get rawStorageUrl;
   @override
+  String get title;
+  @override
   Uri? get scoredStorageUrl;
   @override
   int? get score;
   @override
-  String? get singleComments;
-  @override
   int? get templature;
 
-  /// Create a copy of Video
+  /// Create a copy of NeChu
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$VideoImplCopyWith<_$VideoImpl> get copyWith =>
+  _$$NeChuImplCopyWith<_$NeChuImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

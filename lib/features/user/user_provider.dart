@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:ne_chu_show/model/user.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -11,7 +12,7 @@ class UserProvider extends _$UserProvider {
   }
 
   void change(User user) {
-    print(user.email);
+    debugPrint(user.email);
     state = user;
   }
 

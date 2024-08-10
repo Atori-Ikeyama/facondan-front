@@ -80,8 +80,12 @@ class _SigninState extends State<Signing> {
 
     if (googleSignInAccount == null) {
     } else {
-      ProviderScope.containerOf(context).read(userProviderProvider.notifier).change(User(email: googleSignInAccount.email));
+      // ignore: use_build_context_synchronously
+      ProviderScope.containerOf(context)
+          .read(userProviderProvider.notifier)
+          .change(User(email: googleSignInAccount.email));
       debugPrint("logined${googleSignInAccount.email}");
+      // ignore: use_build_context_synchronously
       Navigator.of(context).pushNamedAndRemoveUntil('/home', (Route<dynamic> route) => false);
     }
   }
