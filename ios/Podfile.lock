@@ -185,6 +185,11 @@ CHECKOUT OPTIONS:
     :git: https://github.com/invertase/firestore-ios-sdk-frameworks.git
     :tag: 10.29.0
 
+CHECKOUT OPTIONS:
+  FirebaseFirestore:
+    :git: https://github.com/invertase/firestore-ios-sdk-frameworks.git
+    :tag: 10.29.0
+
 SPEC CHECKSUMS:
   AppAuth: 501c04eda8a8d11f179dbe8637b7a91bb7e5d2fa
   cloud_firestore: 8a2ff2bb050f87d0ca996866625cefbe2395a83b
