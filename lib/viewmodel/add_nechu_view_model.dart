@@ -1,9 +1,14 @@
 import 'dart:io';
 
+import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ne_chu_show/features/add_nechu/add_nechu_state.dart';
+import 'package:ne_chu_show/features/user/user_provider.dart';
+import 'package:ne_chu_show/model/pre_post_nechu.dart';
+import 'package:ne_chu_show/repository/ne_chu_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:video_player/video_player.dart';
+import 'package:latlong2/latlong.dart';
 
 part 'add_nechu_view_model.g.dart';
 
@@ -40,5 +45,31 @@ class AddNechuViewModel extends _$AddNechuViewModel {
 
     state = state.copyWith(videoController: controller);
     state.videoController!.play();
+  }
+
+  Future<void> uploadNechu() async {
+    state = state.copyWith(isUploading: true);
+
+    String videoPath;
+    DateTime now = DateTime.now();
+    videoPath = "${now.year}-${now.month}-${now.day}-${now.hour}-${now.minute}-${now.second}_${ref.read(userProviderProvider).email}.mp4";
+
+    LatLng gps = await getGps();
+
+    PrePostNechu nechu = PrePostNechu(
+        category: state.category,
+        date: now,
+        email: ref.read(userProviderProvider).email,
+        filePath: videoPath,
+        xfile_video: state.video!,
+        lat: gps.latitude,
+        lng: gps.longitude);
+    await ref.read(neChuRepositoryProvider.notifier).addVideo(nechu);
+    state = state.copyWith(isUploading: false);
+  }
+
+  Future<LatLng> getGps() async {
+    Position current = await Geolocator.getCurrentPosition();
+    return LatLng(current.latitude, current.longitude);
   }
 }

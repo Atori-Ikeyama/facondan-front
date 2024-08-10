@@ -11,5 +11,6 @@ class AddNechuState with _$AddNechuState {
     @Default("") String category,
     XFile? video,
     VideoPlayerController? videoController,
+    @Default(false) bool isUploading,
   }) = _AddNechuState;
 }

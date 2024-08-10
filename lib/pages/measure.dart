@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ne_chu_show/features/add_nechu/movie_picker.dart';
 import 'package:ne_chu_show/viewmodel/add_nechu_view_model.dart';
@@ -18,34 +19,38 @@ class Measure extends StatelessWidget {
         title: const Text('Measure'),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: TextButton(
-        onPressed: () {},
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: Colors.red,
+      floatingActionButton: Consumer(builder: (context, ref, _) {
+        return TextButton(
+          onPressed: () async {
+            ref.read(addNechuViewModelProvider.notifier).uploadNechu();
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.red,
+            ),
+            height: 60,
+            width: 200,
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.thermostat_outlined,
+                  size: 45,
+                  color: Colors.white,
+                ),
+                Text(
+                  "熱を測る",
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
+                ),
+                SizedBox(
+                  width: 10,
+                )
+              ],
+            ),
           ),
-          height: 60,
-          width: 200,
-          child: const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.thermostat_outlined,
-                size: 45,
-                color: Colors.white,
-              ),
-              Text(
-                "熱を測る",
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
-              ),
-              SizedBox(
-                width: 10,
-              )
-            ],
-          ),
-        ),
-      ),
+        );
+      }),
       body: Consumer(builder: (context, ref, _) {
         return Center(
           child: Column(

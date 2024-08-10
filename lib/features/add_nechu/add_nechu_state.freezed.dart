@@ -21,6 +21,7 @@ mixin _$AddNechuState {
   XFile? get video => throw _privateConstructorUsedError;
   VideoPlayerController? get videoController =>
       throw _privateConstructorUsedError;
+  bool get isUploading => throw _privateConstructorUsedError;
 
   /// Create a copy of AddNechuState
   /// with the given fields replaced by the non-null parameter values.
@@ -39,7 +40,8 @@ abstract class $AddNechuStateCopyWith<$Res> {
       {String title,
       String category,
       XFile? video,
-      VideoPlayerController? videoController});
+      VideoPlayerController? videoController,
+      bool isUploading});
 }
 
 /// @nodoc
@@ -61,6 +63,7 @@ class _$AddNechuStateCopyWithImpl<$Res, $Val extends AddNechuState>
     Object? category = null,
     Object? video = freezed,
     Object? videoController = freezed,
+    Object? isUploading = null,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -79,6 +82,10 @@ class _$AddNechuStateCopyWithImpl<$Res, $Val extends AddNechuState>
           ? _value.videoController
           : videoController // ignore: cast_nullable_to_non_nullable
               as VideoPlayerController?,
+      isUploading: null == isUploading
+          ? _value.isUploading
+          : isUploading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -95,7 +102,8 @@ abstract class _$$AddNechuStateImplCopyWith<$Res>
       {String title,
       String category,
       XFile? video,
-      VideoPlayerController? videoController});
+      VideoPlayerController? videoController,
+      bool isUploading});
 }
 
 /// @nodoc
@@ -115,6 +123,7 @@ class __$$AddNechuStateImplCopyWithImpl<$Res>
     Object? category = null,
     Object? video = freezed,
     Object? videoController = freezed,
+    Object? isUploading = null,
   }) {
     return _then(_$AddNechuStateImpl(
       title: null == title
@@ -133,6 +142,10 @@ class __$$AddNechuStateImplCopyWithImpl<$Res>
           ? _value.videoController
           : videoController // ignore: cast_nullable_to_non_nullable
               as VideoPlayerController?,
+      isUploading: null == isUploading
+          ? _value.isUploading
+          : isUploading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -141,7 +154,11 @@ class __$$AddNechuStateImplCopyWithImpl<$Res>
 
 class _$AddNechuStateImpl implements _AddNechuState {
   _$AddNechuStateImpl(
-      {this.title = "", this.category = "", this.video, this.videoController});
+      {this.title = "",
+      this.category = "",
+      this.video,
+      this.videoController,
+      this.isUploading = false});
 
   @override
   @JsonKey()
@@ -153,10 +170,13 @@ class _$AddNechuStateImpl implements _AddNechuState {
   final XFile? video;
   @override
   final VideoPlayerController? videoController;
+  @override
+  @JsonKey()
+  final bool isUploading;
 
   @override
   String toString() {
-    return 'AddNechuState(title: $title, category: $category, video: $video, videoController: $videoController)';
+    return 'AddNechuState(title: $title, category: $category, video: $video, videoController: $videoController, isUploading: $isUploading)';
   }
 
   @override
@@ -169,12 +189,14 @@ class _$AddNechuStateImpl implements _AddNechuState {
                 other.category == category) &&
             (identical(other.video, video) || other.video == video) &&
             (identical(other.videoController, videoController) ||
-                other.videoController == videoController));
+                other.videoController == videoController) &&
+            (identical(other.isUploading, isUploading) ||
+                other.isUploading == isUploading));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, title, category, video, videoController);
+  int get hashCode => Object.hash(
+      runtimeType, title, category, video, videoController, isUploading);
 
   /// Create a copy of AddNechuState
   /// with the given fields replaced by the non-null parameter values.
@@ -190,7 +212,8 @@ abstract class _AddNechuState implements AddNechuState {
       {final String title,
       final String category,
       final XFile? video,
-      final VideoPlayerController? videoController}) = _$AddNechuStateImpl;
+      final VideoPlayerController? videoController,
+      final bool isUploading}) = _$AddNechuStateImpl;
 
   @override
   String get title;
@@ -200,6 +223,8 @@ abstract class _AddNechuState implements AddNechuState {
   XFile? get video;
   @override
   VideoPlayerController? get videoController;
+  @override
+  bool get isUploading;
 
   /// Create a copy of AddNechuState
   /// with the given fields replaced by the non-null parameter values.
