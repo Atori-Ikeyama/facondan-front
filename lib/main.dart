@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ne_chu_show/features/videos/videos.dart';
 import 'package:ne_chu_show/firebase_options.dart';
 import 'package:ne_chu_show/pages/home.dart';
 import 'package:ne_chu_show/pages/measure.dart';
@@ -21,20 +20,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      routes: <String, WidgetBuilder>{
-        '/home': (BuildContext context) => const Home(),
-        '/signing': (BuildContext context) => const Signing(),
-        '/measure': (BuildContext context) => const Measure(),
-        '/score': (BuildContext context) => const Score(),
-      },
-      home: const Signing(),
-    );
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        routes: <String, WidgetBuilder>{
+          '/home': (BuildContext context) => const Home(),
+          '/signing': (BuildContext context) => const Signing(),
+          '/measure': (BuildContext context) => const Measure(),
+          '/score': (BuildContext context) => const Score(),
+        },
+        home: const Signing());
   }
 }
 
@@ -118,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () async {},
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
