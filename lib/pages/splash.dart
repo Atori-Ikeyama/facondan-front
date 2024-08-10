@@ -18,6 +18,25 @@ class _SplashState extends State<Splash> {
   Widget build(BuildContext context) {
     init();
     if (isFinished) {
+      return Consumer(builder: (context, ref, _) {
+        debugPrint(ref.watch(userProviderProvider).email);
+        if (ref.watch(userProviderProvider).email.isNotEmpty) {
+          WidgetsBinding.instance.addPostFrameCallback(
+            (timeStamp) => Navigator.of(context).pushNamedAndRemoveUntil(
+              '/home',
+              (Route<dynamic> route) => false,
+            ),
+          );
+        } else {
+          WidgetsBinding.instance.addPostFrameCallback(
+            (timestamp) => Navigator.of(context).pushNamedAndRemoveUntil(
+              '/signing',
+              (Route<dynamic> route) => false,
+            ),
+          );
+        }
+        return const CircularProgressIndicator();
+      });
       WidgetsBinding.instance.addPostFrameCallback((timestamp) => Navigator.of(context).pushNamed('/home'));
     } else {}
     return const CircularProgressIndicator();
@@ -32,6 +51,7 @@ class _SplashState extends State<Splash> {
       setState(() => isFinished = true);
       await Geolocator.requestPermission();
     }
+
     initLock = true;
   }
 }

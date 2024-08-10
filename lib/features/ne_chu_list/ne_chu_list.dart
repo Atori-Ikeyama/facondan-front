@@ -1,52 +1,62 @@
 import 'package:flutter/material.dart';
+import 'package:ne_chu_show/features/ne_chu_card/ne_chu_card.dart';
+import 'package:ne_chu_show/model/ne_chu.dart';
+import 'package:video_player/video_player.dart';
 
 class NeChuList extends StatefulWidget {
-  const NeChuList({super.key});
+  const NeChuList({super.key, required this.neChus});
+
+  final List<NeChu> neChus;
 
   @override
   State<NeChuList> createState() => _NeChuListState();
 }
 
 class _NeChuListState extends State<NeChuList> {
+  final List<VideoPlayerController> controllers = [];
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: ConstrainedBox(
-        constraints: const BoxConstraints(maxHeight: 200),
+        constraints: const BoxConstraints(maxHeight: 400),
         child: CarouselView(
-          itemExtent: 330,
-          shrinkExtent: 200,
-          children: List<Widget>.generate(20, (int index) {
-            return UncontainedLayoutCard(index: index, label: 'Item $index');
-          }),
+          backgroundColor: Colors.white70,
+          itemExtent: 200,
+          onTap: (value) async {
+            controllers[value].play();
+            await showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  contentPadding: EdgeInsets.zero,
+                  content: AspectRatio(
+                    aspectRatio: controllers[value].value.aspectRatio,
+                    child: VideoPlayer(controllers[value]),
+                  ),
+                );
+              },
+            );
+
+            controllers[value].pause();
+          },
+          children: _buildNeChuCards(),
         ),
       ),
     );
   }
-}
 
-class UncontainedLayoutCard extends StatelessWidget {
-  const UncontainedLayoutCard({
-    super.key,
-    required this.index,
-    required this.label,
-  });
+  List<Widget> _buildNeChuCards() {
+    final List<Widget> neChuCards = [];
 
-  final int index;
-  final String label;
+    for (final neChu in widget.neChus) {
+      final VideoPlayerController controller = VideoPlayerController.networkUrl(neChu.rawStorageUrl);
+      controllers.add(controller);
+      neChuCards.add(NeChuCard(neChu: neChu, controller: controller));
+    }
 
-  @override
-  Widget build(BuildContext context) {
-    return ColoredBox(
-      color: Colors.primaries[index % Colors.primaries.length].withOpacity(0.5),
-      child: Center(
-        child: Text(
-          label,
-          style: const TextStyle(color: Colors.white, fontSize: 20),
-          overflow: TextOverflow.clip,
-          softWrap: false,
-        ),
-      ),
-    );
+    debugPrint('controllers: $controllers');
+
+    return neChuCards;
   }
 }

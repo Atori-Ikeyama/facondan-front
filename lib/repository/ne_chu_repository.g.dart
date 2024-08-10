@@ -6,7 +6,7 @@ part of 'ne_chu_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$neChuRepositoryHash() => r'12ef8f3dc50a7c25a76447baffd4b60ad4866ca5';
+String _$neChuRepositoryHash() => r'a326f502598774abb0bc5f8e587e01836fad3edc';
 
 /// See also [NeChuRepository].
 @ProviderFor(NeChuRepository)
@@ -23,7 +23,7 @@ final neChuRepositoryProvider =
 
 typedef _$NeChuRepository = AutoDisposeNotifier<CollectionReference>;
 String _$neChuStorageRepositoryHash() =>
-    r'9dd3a0896b87c51b00d6f6ed827fd68753f1b36d';
+    r'61de252f4e08390302c639016c59b616de37950e';
 
 /// See also [NeChuStorageRepository].
 @ProviderFor(NeChuStorageRepository)

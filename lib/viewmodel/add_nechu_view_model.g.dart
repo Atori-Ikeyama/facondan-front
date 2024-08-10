@@ -6,7 +6,7 @@ part of 'add_nechu_view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$addNechuViewModelHash() => r'4218d80ea31f74a4c30c95571795f2088c588e61';
+String _$addNechuViewModelHash() => r'1e23639dbcdc98743b161c8178de58bbac554193';
 
 /// See also [AddNechuViewModel].
 @ProviderFor(AddNechuViewModel)

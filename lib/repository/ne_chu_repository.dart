@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
+import 'package:ne_chu_show/model/ne_chu.dart';
 import 'package:ne_chu_show/model/pre_post_nechu.dart';
-import 'package:ne_chu_show/model/video.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'ne_chu_repository.g.dart';
@@ -19,40 +19,50 @@ class NeChuRepository extends _$NeChuRepository {
     return FirebaseFirestore.instance.collection("ne_chus");
   }
 
-  final CollectionReference _videosCollectionRef = FirebaseFirestore.instance.collection("ne_chus");
+  Future<List<NeChu>> getTodayAllVideos() async {
+    List<NeChu> neChus = [];
+    final DateTime now = DateTime.now();
 
-  Future<List<Video>> getAllVideos() async {
-    List<Video> videos = [];
-
-    await _videosCollectionRef.get().then(
+    await state.where('date', isGreaterThanOrEqualTo: DateTime(now.year, now.month, now.day)).get().then(
       (QuerySnapshot<Object?> querySnapshot) {
-        debugPrint(querySnapshot.docs.length.toString());
-        for (var docSnapshot in querySnapshot.docs) {
-          debugPrint("a");
-          //videos.add(Video.fromFirestore(docSnapshot));
-          //Video video = Video.fromFirestore(docSnapshot);
-          //debugPrint("Video: ${video.email}, ${video.category}, ${video.date}, ${video.kissRequired}, ${video.rawStorageUrl}");
+        for (final docSnapshot in querySnapshot.docs) {
+          neChus.add(NeChu.fromFirestore(docSnapshot));
         }
       },
     );
 
-    return videos;
+    return neChus;
+  }
+
+  Future<List<NeChu>> getTodayAllVideosWithoutKissRequired() async {
+    List<NeChu> neChus = [];
+    final DateTime now = DateTime.now();
+
+    await state
+        .where('date', isGreaterThanOrEqualTo: DateTime(now.year, now.month, now.day))
+        .where('kiss_required', isEqualTo: false)
+        .get()
+        .then(
+      (QuerySnapshot<Object?> querySnapshot) {
+        for (final docSnapshot in querySnapshot.docs) {
+          neChus.add(NeChu.fromFirestore(docSnapshot));
+        }
+      },
+    );
+
+    return neChus;
   }
 
   Future<void> addVideo(PrePostNechu video) async {
-    String firebaseUrl = firebaseStoragePathPrefix + video.filePath + firebaseStoragePathSuffix;
-
     try {
-      await _videosCollectionRef.add(
-        {
-          "category": video.category,
-          "date": video.date,
-          "email": video.email,
-          "raw_storage_url": firebaseUrl,
-          "lat": video.lat,
-          "lng": video.lng,
-        },
-      );
+      await ref.read(neChuRepositoryProvider.notifier).addVideo(PrePostNechu(
+          category: video.category,
+          date: video.date,
+          email: video.email,
+          filePath: video.filePath,
+          xfile_video: video.xfile_video,
+          lat: video.lat,
+          lng: video.lng));
     } on Exception {
       throw Exception("ポストに失敗");
     }
