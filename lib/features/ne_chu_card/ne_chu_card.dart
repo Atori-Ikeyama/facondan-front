@@ -38,21 +38,50 @@ class NeChuCardState extends State<NeChuCard> {
     super.dispose();
   }
 
-  // void _play() {
-  //   debugPrint('play');
-  //   widget.controller.play();
-  // }
-
   @override
   Widget build(BuildContext context) {
     if (_isLoading) {
       return const Center(child: CircularProgressIndicator());
     }
     return Center(
-      child: AspectRatio(
-        aspectRatio: widget.controller.value.aspectRatio,
-        child: VideoPlayer(widget.controller),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          AspectRatio(
+            aspectRatio: widget.controller.value.aspectRatio,
+            child: VideoPlayer(widget.controller),
+          ),
+          Text(
+            widget.neChu.title,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Text(
+            '#${matchCategoryJapaneses(widget.neChu.category)}',
+            style: const TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
       ),
     );
+  }
+
+  String matchCategoryJapaneses(String category) {
+    switch (category) {
+      case 'daily':
+        return '日常';
+      case 'sports':
+        return 'スポーツ';
+      case 'game':
+        return 'ゲーム';
+      case 'love':
+        return '恋愛';
+      default:
+        return '';
+    }
   }
 }

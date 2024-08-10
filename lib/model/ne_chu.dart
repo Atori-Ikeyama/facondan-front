@@ -11,9 +11,9 @@ class NeChu with _$NeChu {
       required String email,
       required bool kissRequired,
       required Uri rawStorageUrl,
+      required String title,
       Uri? scoredStorageUrl,
       int? score,
-      String? singleComments,
       int? templature}) = _NeChu;
 
   factory NeChu.fromFirestore(
@@ -26,9 +26,9 @@ class NeChu with _$NeChu {
       email: data['email'] as String,
       kissRequired: data['kiss_required'] as bool,
       rawStorageUrl: Uri.parse(data['raw_storage_url'] as String),
+      title: data['title'] as String,
       scoredStorageUrl: data['scored_storage_url'] != null ? Uri.parse(data['scored_storage_url'] as String) : null,
       score: data['score'] as int?,
-      singleComments: data['single_comments'] as String?,
       templature: data['templature'] as int?,
     );
   }

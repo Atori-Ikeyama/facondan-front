@@ -21,6 +21,7 @@ class _NeChuListState extends State<NeChuList> {
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxHeight: 400),
         child: CarouselView(
+          backgroundColor: Colors.white70,
           itemExtent: 200,
           onTap: (value) async {
             controllers[value].play();

@@ -43,3 +43,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/branding_guideline_sample_nt_rd_lg.svg
+    - assets/logo_nechushow.png

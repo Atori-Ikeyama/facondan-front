@@ -55,7 +55,7 @@ class NeChuRepository extends _$NeChuRepository {
       "raw_storage_url": neChu.rawStorageUrl.toString(),
       "scored_storage_url": neChu.scoredStorageUrl?.toString(),
       "score": neChu.score,
-      "single_comments": neChu.singleComments,
+      "single_comments": neChu.title,
       "templature": neChu.templature,
     });
   }
