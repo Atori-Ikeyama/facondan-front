@@ -1,6 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ne_chu_show/firebase_options.dart';
+import 'package:ne_chu_show/pages/home.dart';
+import 'package:ne_chu_show/pages/measure.dart';
+import 'package:ne_chu_show/pages/score.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,6 +38,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      routes: <String, WidgetBuilder>{
+        '/home': (BuildContext context) => const Home(),
+        '/measure': (BuildContext context) => const Measure(),
+        '/score': (BuildContext context) => const Score(),
+      },
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
