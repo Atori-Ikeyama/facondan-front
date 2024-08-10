@@ -22,20 +22,22 @@ class AddNechuViewModel extends _$AddNechuViewModel {
     state = state.copyWith(category: category);
   }
 
-  void changeVideo(XFile video) {
-    setVideo(video);
+  Future<void> changeVideo(XFile video) async {
+    await setVideo(video);
     state = state.copyWith(video: video);
   }
 
-  void setVideo(XFile xfile) async {
+  Future<void> setVideo(XFile xfile) async {
     print(xfile.path);
 
-    state.videoController!.setVolume(0);
     var controller = VideoPlayerController.file(
       File(xfile.path),
     );
 
     await controller.initialize();
+
+    controller.setVolume(0);
+
     state = state.copyWith(videoController: controller);
     state.videoController!.play();
   }

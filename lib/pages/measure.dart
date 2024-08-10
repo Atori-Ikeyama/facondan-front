@@ -17,6 +17,35 @@ class Measure extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Measure'),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: TextButton(
+        onPressed: () {},
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: Colors.red,
+          ),
+          height: 60,
+          width: 200,
+          child: const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.thermostat_outlined,
+                size: 45,
+                color: Colors.white,
+              ),
+              Text(
+                "熱を測る",
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
+              ),
+              SizedBox(
+                width: 10,
+              )
+            ],
+          ),
+        ),
+      ),
       body: Consumer(builder: (context, ref, _) {
         return Center(
           child: Column(
@@ -127,10 +156,8 @@ class Measure extends StatelessWidget {
                 ),
               ])
             : Consumer(builder: (context, ref2, _) {
-                print(ref2.watch(addNechuViewModelProvider).videoController!.value.aspectRatio);
-                print(ref2.watch(addNechuViewModelProvider).videoController!.value.size);
                 return SizedBox(
-                  height: 230,
+                  height: 280,
                   child: AspectRatio(
                     aspectRatio: ref2.watch(addNechuViewModelProvider).videoController!.value.aspectRatio,
                     child: VideoPlayer(ref2.watch(addNechuViewModelProvider).videoController!),
