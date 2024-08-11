@@ -154,7 +154,7 @@ class _ScoreState extends State<Score> {
           Text(
             '${neChu.temperature}°C',
             style: const TextStyle(
-              fontSize: 30,
+              fontSize: 27,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -189,7 +189,9 @@ class _ScoreState extends State<Score> {
           ),
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushNamedAndRemoveUntil('/home', (route) => false);
+          },
           style: const ButtonStyle(
             backgroundColor: WidgetStatePropertyAll(Colors.red),
           ),
