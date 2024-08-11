@@ -14,7 +14,7 @@ class NeChu with _$NeChu {
       required String title,
       Uri? scoredStorageUrl,
       int? score,
-      int? templature}) = _NeChu;
+      int? temperature}) = _NeChu;
 
   factory NeChu.fromFirestore(
     DocumentSnapshot<Object?> snapshot,
@@ -29,7 +29,7 @@ class NeChu with _$NeChu {
       title: data['title'] as String,
       scoredStorageUrl: data['scored_storage_url'] != null ? Uri.parse(data['scored_storage_url'] as String) : null,
       score: data['score'] as int?,
-      templature: data['templature'] as int?,
+      temperature: data['temperature'] as int?,
     );
   }
 }

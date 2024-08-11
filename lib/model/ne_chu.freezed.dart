@@ -24,7 +24,7 @@ mixin _$NeChu {
   String get title => throw _privateConstructorUsedError;
   Uri? get scoredStorageUrl => throw _privateConstructorUsedError;
   int? get score => throw _privateConstructorUsedError;
-  int? get templature => throw _privateConstructorUsedError;
+  int? get temperature => throw _privateConstructorUsedError;
 
   /// Create a copy of NeChu
   /// with the given fields replaced by the non-null parameter values.
@@ -46,7 +46,7 @@ abstract class $NeChuCopyWith<$Res> {
       String title,
       Uri? scoredStorageUrl,
       int? score,
-      int? templature});
+      int? temperature});
 }
 
 /// @nodoc
@@ -72,7 +72,7 @@ class _$NeChuCopyWithImpl<$Res, $Val extends NeChu>
     Object? title = null,
     Object? scoredStorageUrl = freezed,
     Object? score = freezed,
-    Object? templature = freezed,
+    Object? temperature = freezed,
   }) {
     return _then(_value.copyWith(
       category: null == category
@@ -107,9 +107,9 @@ class _$NeChuCopyWithImpl<$Res, $Val extends NeChu>
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
               as int?,
-      templature: freezed == templature
-          ? _value.templature
-          : templature // ignore: cast_nullable_to_non_nullable
+      temperature: freezed == temperature
+          ? _value.temperature
+          : temperature // ignore: cast_nullable_to_non_nullable
               as int?,
     ) as $Val);
   }
@@ -131,7 +131,7 @@ abstract class _$$NeChuImplCopyWith<$Res> implements $NeChuCopyWith<$Res> {
       String title,
       Uri? scoredStorageUrl,
       int? score,
-      int? templature});
+      int? temperature});
 }
 
 /// @nodoc
@@ -155,7 +155,7 @@ class __$$NeChuImplCopyWithImpl<$Res>
     Object? title = null,
     Object? scoredStorageUrl = freezed,
     Object? score = freezed,
-    Object? templature = freezed,
+    Object? temperature = freezed,
   }) {
     return _then(_$NeChuImpl(
       category: null == category
@@ -190,9 +190,9 @@ class __$$NeChuImplCopyWithImpl<$Res>
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
               as int?,
-      templature: freezed == templature
-          ? _value.templature
-          : templature // ignore: cast_nullable_to_non_nullable
+      temperature: freezed == temperature
+          ? _value.temperature
+          : temperature // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -210,7 +210,7 @@ class _$NeChuImpl implements _NeChu {
       required this.title,
       this.scoredStorageUrl,
       this.score,
-      this.templature});
+      this.temperature});
 
   @override
   final String category;
@@ -229,11 +229,11 @@ class _$NeChuImpl implements _NeChu {
   @override
   final int? score;
   @override
-  final int? templature;
+  final int? temperature;
 
   @override
   String toString() {
-    return 'NeChu(category: $category, date: $date, email: $email, kissRequired: $kissRequired, rawStorageUrl: $rawStorageUrl, title: $title, scoredStorageUrl: $scoredStorageUrl, score: $score, templature: $templature)';
+    return 'NeChu(category: $category, date: $date, email: $email, kissRequired: $kissRequired, rawStorageUrl: $rawStorageUrl, title: $title, scoredStorageUrl: $scoredStorageUrl, score: $score, temperature: $temperature)';
   }
 
   @override
@@ -253,13 +253,13 @@ class _$NeChuImpl implements _NeChu {
             (identical(other.scoredStorageUrl, scoredStorageUrl) ||
                 other.scoredStorageUrl == scoredStorageUrl) &&
             (identical(other.score, score) || other.score == score) &&
-            (identical(other.templature, templature) ||
-                other.templature == templature));
+            (identical(other.temperature, temperature) ||
+                other.temperature == temperature));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, category, date, email,
-      kissRequired, rawStorageUrl, title, scoredStorageUrl, score, templature);
+      kissRequired, rawStorageUrl, title, scoredStorageUrl, score, temperature);
 
   /// Create a copy of NeChu
   /// with the given fields replaced by the non-null parameter values.
@@ -280,7 +280,7 @@ abstract class _NeChu implements NeChu {
       required final String title,
       final Uri? scoredStorageUrl,
       final int? score,
-      final int? templature}) = _$NeChuImpl;
+      final int? temperature}) = _$NeChuImpl;
 
   @override
   String get category;
@@ -299,7 +299,7 @@ abstract class _NeChu implements NeChu {
   @override
   int? get score;
   @override
-  int? get templature;
+  int? get temperature;
 
   /// Create a copy of NeChu
   /// with the given fields replaced by the non-null parameter values.

@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/foundation.dart';
 import 'package:ne_chu_show/model/ne_chu.dart';
 import 'package:ne_chu_show/model/pre_post_nechu.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -53,16 +52,20 @@ class NeChuRepository extends _$NeChuRepository {
     return neChus;
   }
 
-  Future<void> addVideo(PrePostNechu video) async {
+  Future<String> addVideo(PrePostNechu video) async {
+    String docId = "";
+
     try {
-      await ref.read(neChuRepositoryProvider.notifier).addVideo(PrePostNechu(
-          category: video.category,
-          date: video.date,
-          email: video.email,
-          filePath: video.filePath,
-          xfile_video: video.xfile_video,
-          lat: video.lat,
-          lng: video.lng));
+      state.add({
+        'category': video.category,
+        'date': video.date,
+        'email': video.email,
+        'kiss_required': video.kissRequired,
+        'raw_storage_url': "$firebaseStoragePathPrefix${video.filePath}$firebaseStoragePathSuffix",
+        'title': video.title,
+        'lat': video.lat,
+        'lng': video.lng,
+      }).then((documentSnapshot) => docId = documentSnapshot.id);
     } on Exception {
       throw Exception("ポストに失敗");
     }
@@ -72,6 +75,8 @@ class NeChuRepository extends _$NeChuRepository {
     } on Exception {
       throw Exception("ポストに失敗");
     }
+
+    return docId;
   }
 }
 

@@ -47,9 +47,18 @@ class NeChuCardState extends State<NeChuCard> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          AspectRatio(
-            aspectRatio: widget.controller.value.aspectRatio,
-            child: VideoPlayer(widget.controller),
+          GestureDetector(
+            onTap: () async {
+              if (widget.controller.value.isPlaying) {
+                widget.controller.pause();
+              } else {
+                widget.controller.play();
+              }
+            },
+            child: AspectRatio(
+              aspectRatio: widget.controller.value.aspectRatio,
+              child: VideoPlayer(widget.controller),
+            ),
           ),
           Text(
             widget.neChu.title,

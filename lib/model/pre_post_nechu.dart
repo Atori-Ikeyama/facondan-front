@@ -6,6 +6,8 @@ part 'pre_post_nechu.freezed.dart';
 @freezed
 class PrePostNechu with _$PrePostNechu {
   factory PrePostNechu({
+    required String title,
+    required bool kissRequired,
     required String category,
     required DateTime date,
     required String email,
