@@ -17,16 +17,17 @@ class NeChuCard extends StatefulWidget {
 }
 
 class NeChuCardState extends State<NeChuCard> {
-  @override
-  void initState() {
-    super.initState();
+  Future<void> _initializeVideoPlayerFuture() async {
+    if (widget.controller.value.isInitialized) {
+      return;
+    }
+    await widget.controller.initialize();
   }
 
   @override
-  @override
   Widget build(BuildContext context) {
     return FutureBuilder<void>(
-        future: widget.controller.initialize(),
+        future: _initializeVideoPlayerFuture(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -44,9 +45,12 @@ class NeChuCardState extends State<NeChuCard> {
                       widget.controller.play();
                     }
                   },
-                  child: AspectRatio(
-                    aspectRatio: widget.controller.value.aspectRatio,
-                    child: VideoPlayer(widget.controller),
+                  child: SizedBox(
+                    width: 200,
+                    child: AspectRatio(
+                      aspectRatio: widget.controller.value.aspectRatio,
+                      child: VideoPlayer(widget.controller),
+                    ),
                   ),
                 ),
                 Text(
