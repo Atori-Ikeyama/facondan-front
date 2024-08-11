@@ -16,6 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PrePostNechu {
+  String get title => throw _privateConstructorUsedError;
+  bool get kissRequired => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
@@ -38,7 +40,9 @@ abstract class $PrePostNechuCopyWith<$Res> {
       _$PrePostNechuCopyWithImpl<$Res, PrePostNechu>;
   @useResult
   $Res call(
-      {String category,
+      {String title,
+      bool kissRequired,
+      String category,
       DateTime date,
       String email,
       String filePath,
@@ -62,15 +66,25 @@ class _$PrePostNechuCopyWithImpl<$Res, $Val extends PrePostNechu>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? title = null,
+    Object? kissRequired = null,
     Object? category = null,
     Object? date = null,
     Object? email = null,
     Object? filePath = null,
-    Object? xfile_video = freezed,
+    Object? xfile_video = null,
     Object? lat = null,
     Object? lng = null,
   }) {
     return _then(_value.copyWith(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      kissRequired: null == kissRequired
+          ? _value.kissRequired
+          : kissRequired // ignore: cast_nullable_to_non_nullable
+              as bool,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -87,7 +101,7 @@ class _$PrePostNechuCopyWithImpl<$Res, $Val extends PrePostNechu>
           ? _value.filePath
           : filePath // ignore: cast_nullable_to_non_nullable
               as String,
-      xfile_video: freezed == xfile_video
+      xfile_video: null == xfile_video
           ? _value.xfile_video
           : xfile_video // ignore: cast_nullable_to_non_nullable
               as XFile,
@@ -112,7 +126,9 @@ abstract class _$$PrePostNechuImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String category,
+      {String title,
+      bool kissRequired,
+      String category,
       DateTime date,
       String email,
       String filePath,
@@ -134,15 +150,25 @@ class __$$PrePostNechuImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? title = null,
+    Object? kissRequired = null,
     Object? category = null,
     Object? date = null,
     Object? email = null,
     Object? filePath = null,
-    Object? xfile_video = freezed,
+    Object? xfile_video = null,
     Object? lat = null,
     Object? lng = null,
   }) {
     return _then(_$PrePostNechuImpl(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      kissRequired: null == kissRequired
+          ? _value.kissRequired
+          : kissRequired // ignore: cast_nullable_to_non_nullable
+              as bool,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -159,7 +185,7 @@ class __$$PrePostNechuImplCopyWithImpl<$Res>
           ? _value.filePath
           : filePath // ignore: cast_nullable_to_non_nullable
               as String,
-      xfile_video: freezed == xfile_video
+      xfile_video: null == xfile_video
           ? _value.xfile_video
           : xfile_video // ignore: cast_nullable_to_non_nullable
               as XFile,
@@ -179,7 +205,9 @@ class __$$PrePostNechuImplCopyWithImpl<$Res>
 
 class _$PrePostNechuImpl implements _PrePostNechu {
   _$PrePostNechuImpl(
-      {required this.category,
+      {required this.title,
+      required this.kissRequired,
+      required this.category,
       required this.date,
       required this.email,
       required this.filePath,
@@ -187,6 +215,10 @@ class _$PrePostNechuImpl implements _PrePostNechu {
       required this.lat,
       required this.lng});
 
+  @override
+  final String title;
+  @override
+  final bool kissRequired;
   @override
   final String category;
   @override
@@ -204,7 +236,7 @@ class _$PrePostNechuImpl implements _PrePostNechu {
 
   @override
   String toString() {
-    return 'PrePostNechu(category: $category, date: $date, email: $email, filePath: $filePath, xfile_video: $xfile_video, lat: $lat, lng: $lng)';
+    return 'PrePostNechu(title: $title, kissRequired: $kissRequired, category: $category, date: $date, email: $email, filePath: $filePath, xfile_video: $xfile_video, lat: $lat, lng: $lng)';
   }
 
   @override
@@ -212,21 +244,24 @@ class _$PrePostNechuImpl implements _PrePostNechu {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PrePostNechuImpl &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.kissRequired, kissRequired) ||
+                other.kissRequired == kissRequired) &&
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.filePath, filePath) ||
                 other.filePath == filePath) &&
-            const DeepCollectionEquality()
-                .equals(other.xfile_video, xfile_video) &&
+            (identical(other.xfile_video, xfile_video) ||
+                other.xfile_video == xfile_video) &&
             (identical(other.lat, lat) || other.lat == lat) &&
             (identical(other.lng, lng) || other.lng == lng));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, category, date, email, filePath,
-      const DeepCollectionEquality().hash(xfile_video), lat, lng);
+  int get hashCode => Object.hash(runtimeType, title, kissRequired, category,
+      date, email, filePath, xfile_video, lat, lng);
 
   /// Create a copy of PrePostNechu
   /// with the given fields replaced by the non-null parameter values.
@@ -239,7 +274,9 @@ class _$PrePostNechuImpl implements _PrePostNechu {
 
 abstract class _PrePostNechu implements PrePostNechu {
   factory _PrePostNechu(
-      {required final String category,
+      {required final String title,
+      required final bool kissRequired,
+      required final String category,
       required final DateTime date,
       required final String email,
       required final String filePath,
@@ -247,6 +284,10 @@ abstract class _PrePostNechu implements PrePostNechu {
       required final double lat,
       required final double lng}) = _$PrePostNechuImpl;
 
+  @override
+  String get title;
+  @override
+  bool get kissRequired;
   @override
   String get category;
   @override

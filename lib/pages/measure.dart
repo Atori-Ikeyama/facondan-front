@@ -1,19 +1,17 @@
-import 'dart:convert';
-
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ne_chu_show/features/add_nechu/movie_picker.dart';
-import 'package:ne_chu_show/viewmodel/add_nechu_view_model.dart';
+import 'package:ne_chu_show/view_model/measure/add_nechu_view_model.dart';
 import 'package:video_player/video_player.dart';
 
-class Measure extends StatelessWidget {
+class Measure extends ConsumerWidget {
   const Measure({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    // final docId = ref.watch(addNechuViewModelProvider).docId;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Measure'),
@@ -22,7 +20,8 @@ class Measure extends StatelessWidget {
       floatingActionButton: Consumer(builder: (context, ref, _) {
         return TextButton(
           onPressed: () async {
-            ref.read(addNechuViewModelProvider.notifier).uploadNechu();
+            final docId = await ref.read(addNechuViewModelProvider.notifier).uploadNechu();
+            Navigator.of(context).pushNamed('/score', arguments: docId);
           },
           child: Container(
             decoration: BoxDecoration(
@@ -82,11 +81,11 @@ class Measure extends StatelessWidget {
               height: 20,
             ),
             Consumer(builder: (context, ref, _) {
+              // final function = ref.watch(addNechuViewModelProvider.notifier);
+              final state = ref.watch(addNechuViewModelProvider);
+
               return TextFormField(
-                onChanged: (value) {
-                  ref.read(addNechuViewModelProvider.notifier).changeTitle(value);
-                },
-                controller: TextEditingController(text: ref.watch(addNechuViewModelProvider).title),
+                controller: state.titleController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'タイトル',
@@ -113,11 +112,11 @@ class Measure extends StatelessWidget {
                 ),
                 child: DropdownButton(
                   value: (catego.isNotEmpty) ? catego : null,
-                  hint: Text("ヒント"),
+                  hint: const Text("ヒント"),
                   items: items.map((String value) {
                     return DropdownMenuItem(
                       value: value,
-                      child: Text(" " + value),
+                      child: Text(" $value"),
                       // onTap: () => ref.read(addNechuViewModelProvider.notifier).changeCategory(value),
                     );
                   }).toList(),
@@ -140,7 +139,7 @@ class Measure extends StatelessWidget {
       child: TextButton(
         style: TextButton.styleFrom(shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
         onPressed: () async {
-          XFile? file = await MoviePicker.PickMovie();
+          XFile? file = await MoviePicker.pickMovie();
           if (file != null) {
             ref.read(addNechuViewModelProvider.notifier).changeVideo(file);
           }

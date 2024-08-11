@@ -6,7 +6,7 @@ part of 'ne_chu_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$neChuRepositoryHash() => r'1156de2d43cfdffae8ace0a6b4d59a5066061b17';
+String _$neChuRepositoryHash() => r'f7919c361cad7a413d1fce040d41d19a26bdfbcd';
 
 /// See also [NeChuRepository].
 @ProviderFor(NeChuRepository)

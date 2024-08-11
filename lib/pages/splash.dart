@@ -37,7 +37,6 @@ class _SplashState extends State<Splash> {
         }
         return const CircularProgressIndicator();
       });
-      WidgetsBinding.instance.addPostFrameCallback((timestamp) => Navigator.of(context).pushNamed('/home'));
     } else {}
     return const CircularProgressIndicator();
   }

@@ -17,11 +17,13 @@ part 'add_nechu_view_model.g.dart';
 class AddNechuViewModel extends _$AddNechuViewModel {
   @override
   AddNechuState build() {
-    return AddNechuState();
-  }
-
-  void changeTitle(String title) {
-    state = state.copyWith(title: title);
+    return AddNechuState(
+      category: "",
+      video: null,
+      videoController: null,
+      isUploading: false,
+      titleController: TextEditingController(),
+    );
   }
 
   void changeCategory(String category) {
@@ -49,29 +51,45 @@ class AddNechuViewModel extends _$AddNechuViewModel {
     state.videoController!.play();
   }
 
-  Future<void> uploadNechu() async {
+  Future<String> uploadNechu() async {
     state = state.copyWith(isUploading: true);
 
     String videoPath;
     DateTime now = DateTime.now();
-    videoPath = "${now.year}-${now.month}-${now.day}-${now.hour}-${now.minute}-${now.second}_${ref.read(userProviderProvider).email}.mp4";
+    videoPath =
+        "${now.year}-${now.month}-${now.day}-${now.hour}-${now.minute}-${now.second}_${ref.read(userProviderProvider).email}.mp4";
 
     LatLng gps = await getGps();
 
     PrePostNechu nechu = PrePostNechu(
-        category: state.category,
-        date: now,
-        email: ref.read(userProviderProvider).email,
-        filePath: videoPath,
-        xfile_video: state.video!,
-        lat: gps.latitude,
-        lng: gps.longitude);
-    await ref.read(neChuRepositoryProvider.notifier).addVideo(nechu);
+      title: state.titleController!.text,
+      kissRequired: false,
+      category: mapCategory(state.category),
+      date: now,
+      email: ref.read(userProviderProvider).email,
+      filePath: videoPath,
+      xfile_video: state.video!,
+      lat: gps.latitude,
+      lng: gps.longitude,
+    );
+    final docId = await ref.read(neChuRepositoryProvider.notifier).addVideo(nechu);
     state = state.copyWith(isUploading: false);
+
+    return docId;
   }
 
   Future<LatLng> getGps() async {
     Position current = await Geolocator.getCurrentPosition();
     return LatLng(current.latitude, current.longitude);
+  }
+
+  String mapCategory(String category) {
+    return switch (category) {
+      '日常' => 'daily',
+      'スポーツ' => 'sports',
+      'ゲーム' => 'game',
+      '恋愛' => 'love',
+      _ => 'other',
+    };
   }
 }
