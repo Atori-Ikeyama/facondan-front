@@ -16,6 +16,14 @@ class _NeChuListState extends State<NeChuList> {
   final List<VideoPlayerController> controllers = [];
 
   @override
+  void dispose() {
+    for (final controller in controllers) {
+      controller.dispose();
+    }
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Center(
       child: ConstrainedBox(

@@ -23,11 +23,6 @@ class NeChuCardState extends State<NeChuCard> {
   }
 
   @override
-  void dispose() {
-    widget.controller.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<void>(
