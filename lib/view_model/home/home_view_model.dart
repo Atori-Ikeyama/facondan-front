@@ -12,6 +12,9 @@ class HomeViewModel extends _$HomeViewModel {
   Future<List<NeChu>> build() async {
     final neChuRepository = ref.read(neChuRepositoryProvider.notifier);
     List<NeChu> neChus = await neChuRepository.getTodayAllVideosWithoutKissRequired();
+    //scoreが存在しないものは除外
+    neChus = neChus.where((neChu) => neChu.score != null).toList();
+
     neChus.sort((a, b) => b.score! - a.score!);
 
     return neChus;
