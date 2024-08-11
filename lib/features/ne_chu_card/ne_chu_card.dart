@@ -17,66 +17,61 @@ class NeChuCard extends StatefulWidget {
 }
 
 class NeChuCardState extends State<NeChuCard> {
-  bool _isLoading = true;
-
   @override
   void initState() {
     super.initState();
-    debugPrint('rawStorageUrl: ${widget.neChu.rawStorageUrl}');
-    _initVideoPlayer();
-  }
-
-  void _initVideoPlayer() async {
-    await widget.controller.initialize();
-    _isLoading = false;
-    setState(() {});
   }
 
   @override
   void dispose() {
-    //widget.controller.dispose();
+    widget.controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_isLoading) {
-      return const Center(child: CircularProgressIndicator());
-    }
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          GestureDetector(
-            onTap: () async {
-              if (widget.controller.value.isPlaying) {
-                widget.controller.pause();
-              } else {
-                widget.controller.play();
-              }
-            },
-            child: AspectRatio(
-              aspectRatio: widget.controller.value.aspectRatio,
-              child: VideoPlayer(widget.controller),
+    return FutureBuilder<void>(
+        future: widget.controller.initialize(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                GestureDetector(
+                  onTap: () async {
+                    if (widget.controller.value.isPlaying) {
+                      widget.controller.pause();
+                    } else {
+                      widget.controller.play();
+                    }
+                  },
+                  child: AspectRatio(
+                    aspectRatio: widget.controller.value.aspectRatio,
+                    child: VideoPlayer(widget.controller),
+                  ),
+                ),
+                Text(
+                  widget.neChu.title,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  '#${matchCategoryJapaneses(widget.neChu.category)}',
+                  style: const TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
             ),
-          ),
-          Text(
-            widget.neChu.title,
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Text(
-            '#${matchCategoryJapaneses(widget.neChu.category)}',
-            style: const TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      ),
-    );
+          );
+        });
   }
 
   String matchCategoryJapaneses(String category) {
