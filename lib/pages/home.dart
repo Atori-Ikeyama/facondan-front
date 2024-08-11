@@ -4,6 +4,11 @@ import 'package:ne_chu_show/features/ne_chu_list/ne_chu_list.dart';
 import 'package:ne_chu_show/model/ne_chu.dart';
 import 'package:ne_chu_show/view_model/home/home_view_model.dart';
 
+const homeHeaderTextStyle = TextStyle(
+  fontSize: 25,
+  fontWeight: FontWeight.bold,
+);
+
 class Home extends ConsumerWidget {
   const Home({super.key});
 
@@ -33,32 +38,35 @@ class Home extends ConsumerWidget {
         title: Image.asset('assets/logo_nechushow.png', height: 40),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const SizedBox(height: 10),
-            const Text(
-              '今日の熱中賞',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const SizedBox(height: 10),
+              Text(
+                '今日の熱中賞',
+                style: homeHeaderTextStyle,
               ),
-            ),
-            neChus.when<Widget>(
-              data: (neChus) {
-                return NeChuList(neChus: neChus);
-              },
-              error: (error, _) {
-                debugPrint(error.toString());
-                return const Text('エラーが発生しました');
-              },
-              loading: () {
-                return const CircularProgressIndicator();
-              },
-            ),
-            // const SizedBox(height: 10),
-            ..._buildNeChuList(providers, titles),
-          ],
+              SizedBox(
+                height: 10,
+              ),
+              neChus.when<Widget>(
+                data: (neChus) {
+                  return NeChuList(neChus: neChus);
+                },
+                error: (error, _) {
+                  debugPrint(error.toString());
+                  return const Text('エラーが発生しました');
+                },
+                loading: () {
+                  return const CircularProgressIndicator();
+                },
+              ),
+              // const SizedBox(height: 10),
+              ..._buildNeChuList(providers, titles),
+            ],
+          ),
         ),
       ),
       floatingActionButton: IconButton(
@@ -67,7 +75,7 @@ class Home extends ConsumerWidget {
         },
         icon: const Icon(
           Icons.add_circle_outline,
-          size: 50,
+          size: 90,
           weight: 10,
           color: Color(0xFFFF1212),
         ),
@@ -85,13 +93,10 @@ class Home extends ConsumerWidget {
       neChuList.add(
         Column(
           children: <Widget>[
-            const SizedBox(height: 10),
+            const SizedBox(height: 15),
             Text(
               titles[i],
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+              style: homeHeaderTextStyle,
             ),
             NeChuList(neChus: providers[i]),
           ],

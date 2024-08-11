@@ -34,7 +34,7 @@ class NeChuCardState extends State<NeChuCard> {
 
   @override
   void dispose() {
-    widget.controller.dispose();
+    //widget.controller.dispose();
     super.dispose();
   }
 

@@ -113,11 +113,11 @@ class Measure extends StatelessWidget {
                 ),
                 child: DropdownButton(
                   value: (catego.isNotEmpty) ? catego : null,
-                  hint: Text("ヒント"),
+                  hint: const Text("ヒント"),
                   items: items.map((String value) {
                     return DropdownMenuItem(
                       value: value,
-                      child: Text(" " + value),
+                      child: Text(" $value"),
                       // onTap: () => ref.read(addNechuViewModelProvider.notifier).changeCategory(value),
                     );
                   }).toList(),
